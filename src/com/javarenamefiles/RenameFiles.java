@@ -1,15 +1,24 @@
 package com.javarenamefiles;
 
+import java.io.File;
 import java.util.Scanner;
 
 public class RenameFiles {
 
   public static void main(String[] args) {
-    getInput();
+    String[] userInputs = getInput();
+    System.out.println("KIM ");
+    System.out.println(userInputs);
+
+    //File file = new File(startingPath);
+    //boolean exists = file.exists();
+    //boolean isDirectory = file.isDirectory();
+    //boolean isFile = file.isFile();
+
     // TODO: renameAllFiles();
   }
 
-  private static void getInput() {
+  private static String[] getInput() {
     Scanner input = new Scanner(System.in);
 
     // Use read(), next(), or readLine() to read input.
@@ -27,6 +36,12 @@ public class RenameFiles {
     System.out.println("Replacement String:\t" + replacement_string);
     System.out.println("Starting Path of Files:\t " + starting_path);
 
+    String[] userInputs = new String[3];
+    userInputs[0] = string_to_replace;
+    userInputs[1] = replacement_string;
+    userInputs[2] = starting_path;
+
+    return userInputs;
   }
 
   //private static void renameAllFiles() {
