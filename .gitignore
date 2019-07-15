@@ -1,0 +1,15 @@
+## Java
+#############
+*.class
+
+## IntelliJ
+#############
+*.iml
+.idea/
+*.ipr
+*.iws
+out/
+
+## OS X
+#############
+.DS_Store
