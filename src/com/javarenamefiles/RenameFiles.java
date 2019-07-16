@@ -7,15 +7,31 @@ public class RenameFiles {
 
   public static void main(String[] args) {
     String[] userInputs = getInput();
-    System.out.println("KIM ");
-    System.out.println(userInputs);
 
-    //File file = new File(startingPath);
-    //boolean exists = file.exists();
-    //boolean isDirectory = file.isDirectory();
-    //boolean isFile = file.isFile();
+    String oldFile = userInputs[0];
+    String newFile = userInputs[1];
+    String startingPath = userInputs[2];
+
+    System.out.println("oldFile is: " + oldFile);
+    System.out.println("newFile is: " + newFile);
+    System.out.println("startingPath is: " + startingPath);
+
+    // Note: This checks for the existing directory, not file.
+    File file = new File(startingPath);
+
+    try {
+      boolean fileExists = file.exists();
+      if (fileExists == false) {
+        System.out.println("file with path : " + file + " - does NOT exist.");
+        return;
+      }
+    }
+    catch (Exception e) {
+      System.out.println("This directory name does not exist.");
+    }
 
     // TODO: renameAllFiles();
+
   }
 
   private static String[] getInput() {
