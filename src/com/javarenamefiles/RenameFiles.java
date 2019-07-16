@@ -21,7 +21,7 @@ public class RenameFiles {
     // For testing, use:  /Users/kimlew/temp
     File file = new File(startingPath);
 
-    // Check File object to see if it is a directory or file.
+    // Check File object to see if it is a directory.
     try {
       boolean isDirectory = file.isDirectory();
       if (isDirectory == false) {
@@ -33,6 +33,7 @@ public class RenameFiles {
       System.out.println("This is NOT directory: " + file);
     }
 
+    // Check File object to see if directory exists.
     try {
       boolean fileExists = file.exists();
       if (fileExists == false) {
@@ -42,6 +43,21 @@ public class RenameFiles {
     }
     catch (Exception e) {
       System.out.println("This directory path does NOT exist: " + file);
+    }
+
+    // Display all files in directory using listFiles() & a for loop.
+    try {
+      // Get all existing filenames in given directory.
+      File[] files = file.listFiles();
+      System.out.println("Files are:");
+
+      // Display the names of the files.
+      for (int i = 0; i < files.length; i++) {
+        System.out.println(files[i].getName());
+      }
+    }
+    catch (Exception e) {
+      System.err.println(e.getMessage());
     }
 
     // TODO: renameAllFiles();
