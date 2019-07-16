@@ -15,19 +15,33 @@ public class RenameFiles {
     System.out.println("oldFile is: " + oldFile);
     System.out.println("newFile is: " + newFile);
     System.out.println("startingPath is: " + startingPath);
+    System.out.println();
 
     // Note: This checks for the existing directory, not file.
+    // For testing, use:  /Users/kimlew/temp
     File file = new File(startingPath);
 
+    // Check File object to see if it is a directory or file.
     try {
-      boolean fileExists = file.exists();
-      if (fileExists == false) {
-        System.out.println("file with path : " + file + " - does NOT exist.");
+      boolean isDirectory = file.isDirectory();
+      if (isDirectory == false) {
+        System.out.println("This is NOT directory: " + file);
         return;
       }
     }
     catch (Exception e) {
-      System.out.println("This directory name does not exist.");
+      System.out.println("This is NOT directory: " + file);
+    }
+
+    try {
+      boolean fileExists = file.exists();
+      if (fileExists == false) {
+        System.out.println("This directory path does NOT exist: " + file);
+        return;
+      }
+    }
+    catch (Exception e) {
+      System.out.println("This directory path does NOT exist: " + file);
     }
 
     // TODO: renameAllFiles();
