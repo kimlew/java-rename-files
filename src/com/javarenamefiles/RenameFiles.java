@@ -80,12 +80,17 @@ public class RenameFiles {
     for (int j = 0; j < fileNames.length; j++) {
       boolean hasOldText = fileNames[j].contains(oldText);
 
-      if (hasOldText == true) {
-        ArrayList<String> filesToChange = new ArrayList<String>();
-        filesToChange.add(fileNames[j]);
-        System.out.println("ArrayList has: " + filesToChange);
-        // Add path to oldText = for full path & filename.
-        countFound++;
+      try {
+        if (hasOldText == true) {
+          ArrayList<String> filesToChange = new ArrayList<String>();
+          filesToChange.add(fileNames[j]);
+          System.out.println("ArrayList has: " + filesToChange);
+          // Add path to oldText = for full path & filename.
+          countFound++;
+        }
+      }
+      catch (Exception e) {
+        System.out.println("There are no files that contain the text.");
       }
     }
 
