@@ -60,7 +60,7 @@ public class RenameFiles {
     String[] fileNames = new String[files.length];
     int countFound = 0;
 
-    fileNames = new String[files.length];
+
     for (int i = 0; i < files.length; i++) {
       fileNames[i] = files[i].getName();
     }
@@ -71,7 +71,7 @@ public class RenameFiles {
         ArrayList<String> filesToChange = new ArrayList<>();
         filesToChange.add(fileNames[j]);
         System.out.println("ArrayList with files to change has: " + filesToChange);
-        // Add path to oldText = for full path & filename.
+        // TODO: Add path to oldText = for full path & filename.
         countFound++;
       }
     }
