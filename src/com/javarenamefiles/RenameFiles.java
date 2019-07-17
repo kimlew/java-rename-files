@@ -81,7 +81,7 @@ public class RenameFiles {
 
       try {
         if (hasOldText) {
-          ArrayList<String> filesToChange = new ArrayList<String>();
+          ArrayList<String> filesToChange = new ArrayList<>();
           filesToChange.add(fileNames[j]);
           System.out.println("ArrayList has: " + filesToChange);
           // Add path to oldText = for full path & filename.
@@ -91,6 +91,7 @@ public class RenameFiles {
       catch (Exception e) {
         System.out.println("There are no files that contain the text.");
       }
+      System.out.println("Number of files found with text: " + countFound);
     }
 
   // TODO: renameAllFiles();
@@ -113,6 +114,7 @@ public class RenameFiles {
     System.out.println("String to Replace:\t" + string_to_replace);
     System.out.println("Replacement String:\t" + replacement_string);
     System.out.println("Starting Path of Files:\t " + starting_path);
+    System.out.println();
 
     String[] userInputs = new String[3];
     userInputs[0] = string_to_replace;
