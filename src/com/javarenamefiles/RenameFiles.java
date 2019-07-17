@@ -16,18 +16,7 @@ public class RenameFiles {
     // Note: This checks for the existing directory, not file.
     // For testing, use:  /Users/kimlew/temp
     File file = new File(startingPath);
-
-    // Check File object to see if it is a directory.
-    try {
-      boolean isDirectory = file.isDirectory();
-      if (!isDirectory) {
-        System.out.println("This is NOT directory: " + file);
-        return;
-      }
-    }
-    catch (Exception e) {
-      System.out.println("This is NOT directory: " + file);
-    }
+    if (isPathADirectory(file)) return;
 
     // Check File object to see if directory exists.
     try {
@@ -72,7 +61,7 @@ public class RenameFiles {
       System.out.println("There are no files that contain the text.");
     }
     System.out.println();
-    
+
     // Check if any filenames in Files array contain the stringToReplace.
     // If no - return from program with user message,
     // "There are no files with this text. No files were renamed."
@@ -103,6 +92,21 @@ public class RenameFiles {
     // TODO: renameAllFiles();
 
   } // End of main().
+
+  private static boolean isPathADirectory(File file) {
+    // Check File object to see if it is a directory.
+    try {
+      boolean isDirectory = file.isDirectory();
+      if (!isDirectory) {
+        System.out.println("This is NOT directory: " + file);
+        return true;
+      }
+    }
+    catch (Exception e) {
+      System.out.println("This is NOT directory: " + file);
+    }
+    return false;
+  }
 
   private static String[] getInput() {
     Scanner input = new Scanner(System.in);
