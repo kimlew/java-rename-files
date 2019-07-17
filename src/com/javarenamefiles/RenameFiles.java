@@ -17,18 +17,7 @@ public class RenameFiles {
     // For testing, use:  /Users/kimlew/temp
     File file = new File(startingPath);
     if (isPathADirectory(file)) return;
-
-    // Check File object to see if directory exists.
-    try {
-      boolean fileExists = file.exists();
-      if (!fileExists) {
-        System.out.println("This directory path does NOT exist: " + file);
-        return;
-      }
-    }
-    catch (Exception e) {
-      System.out.println("This directory path does NOT exist: " + file);
-    }
+    if (doesDirectoryExist(file)) return;
 
     // Get & display all files in directory using listFiles() & for loop.
     File[] files = file.listFiles();
@@ -92,6 +81,21 @@ public class RenameFiles {
     // TODO: renameAllFiles();
 
   } // End of main().
+
+  private static boolean doesDirectoryExist(File file) {
+    // Check File object to see if directory exists.
+    try {
+      boolean fileExists = file.exists();
+      if (!fileExists) {
+        System.out.println("This directory path does NOT exist: " + file);
+        return true;
+      }
+    }
+    catch (Exception e) {
+      System.out.println("This directory path does NOT exist: " + file);
+    }
+    return false;
+  }
 
   private static boolean isPathADirectory(File file) {
     // Check File object to see if it is a directory.
