@@ -2,6 +2,7 @@ package com.javarenamefiles;
 
 import java.io.File;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class RenameFiles {
@@ -62,6 +63,7 @@ public class RenameFiles {
       System.err.println(e.getMessage());
     }
 
+    System.out.println();
     // Check if any filenames in Files array contain the stringToReplace.
     // If no - return from program with user message,
     // "There are no files with this text. No files were renamed."
@@ -78,6 +80,13 @@ public class RenameFiles {
     for (int j = 0; j < fileNames.length; j++) {
       boolean hasOldText = fileNames[j].contains(oldText);
 
+      if (hasOldText == true) {
+        ArrayList<String> filesToChange = new ArrayList<String>();
+        filesToChange.add(fileNames[j]);
+        System.out.println("ArrayList has: " + filesToChange);
+        // Add path to oldText = for full path & filename.
+        countFound++;
+      }
     }
 
   // TODO: renameAllFiles();
