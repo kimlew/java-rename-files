@@ -74,19 +74,20 @@ public class RenameFiles {
     // If yes - Call renameAllFiles().
     // Iterate through the files array & call getName() for each file.
 
-    String[] fileNames;
+    String[] fileNames = new String[files.length];
     int countFound = 0;
 
     fileNames = new String[files.length];
     for (int i = 0; i < files.length; i++) {
       fileNames[i] = files[i].getName();
     }
+
     for (int j = 0; j < fileNames.length; j++) {
       boolean hasOldText = fileNames[j].contains(oldText);
       if (hasOldText) {
         ArrayList<String> filesToChange = new ArrayList<>();
         filesToChange.add(fileNames[j]);
-        System.out.println("ArrayList has: " + filesToChange);
+        System.out.println("ArrayList with files to change has: " + filesToChange);
         // Add path to oldText = for full path & filename.
         countFound++;
       }
