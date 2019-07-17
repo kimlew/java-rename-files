@@ -13,11 +13,6 @@ public class RenameFiles {
     String newText = userInputs[1];
     String startingPath = userInputs[2];
 
-    System.out.println("oldText is: " + oldText);
-    System.out.println("newText is: " + newText);
-    System.out.println("startingPath is: " + startingPath);
-    System.out.println();
-
     // Note: This checks for the existing directory, not file.
     // For testing, use:  /Users/kimlew/temp
     File file = new File(startingPath);
@@ -76,8 +71,8 @@ public class RenameFiles {
       e.printStackTrace();
       System.out.println("There are no files that contain the text.");
     }
-
     System.out.println();
+    
     // Check if any filenames in Files array contain the stringToReplace.
     // If no - return from program with user message,
     // "There are no files with this text. No files were renamed."
