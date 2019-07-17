@@ -54,8 +54,13 @@ public class RenameFiles {
       System.out.println("Files are:");
 
       // Display the names of the files.
-      for (int i = 0; i < files.length; i++) {
-        System.out.println(files[i].getName());
+      try {
+        for (int i = 0; i < files.length; i++) {
+          System.out.println(files[i].getName());
+        }
+      }
+      catch (Exception e) {
+        e.printStackTrace();
       }
     }
     catch (Exception e) {
@@ -69,33 +74,30 @@ public class RenameFiles {
     // If yes - Call renameAllFiles().
     // Iterate through the files array & call getName() for each file.
 
-    String[] fileNames = new String[files.length];
+    String[] fileNames;
+    int countFound = 0;
 
+    fileNames = new String[files.length];
     for (int i = 0; i < files.length; i++) {
       fileNames[i] = files[i].getName();
     }
-
-    int countFound = 0;
     for (int j = 0; j < fileNames.length; j++) {
       boolean hasOldText = fileNames[j].contains(oldText);
-
-      try {
-        if (hasOldText) {
-          ArrayList<String> filesToChange = new ArrayList<>();
-          filesToChange.add(fileNames[j]);
-          System.out.println("ArrayList has: " + filesToChange);
-          // Add path to oldText = for full path & filename.
-          countFound++;
-        }
+      if (hasOldText) {
+        ArrayList<String> filesToChange = new ArrayList<>();
+        filesToChange.add(fileNames[j]);
+        System.out.println("ArrayList has: " + filesToChange);
+        // Add path to oldText = for full path & filename.
+        countFound++;
       }
-      catch (Exception e) {
-        System.out.println("There are no files that contain the text.");
-      }
-      System.out.println("Number of files found with text: " + countFound);
     }
+    //System.out.println("There are no files that contain the text.");
 
-  // TODO: renameAllFiles();
-  }
+    System.out.println("Number of files found with text: " + countFound);
+
+    // TODO: renameAllFiles();
+
+  } // End of main().
 
   private static String[] getInput() {
     Scanner input = new Scanner(System.in);
