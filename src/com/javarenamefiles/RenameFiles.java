@@ -1,6 +1,7 @@
 package com.javarenamefiles;
 
 import java.io.File;
+import java.nio.file.Files;
 import java.util.Scanner;
 
 public class RenameFiles {
@@ -8,12 +9,12 @@ public class RenameFiles {
   public static void main(String[] args) {
     String[] userInputs = getInput();
 
-    String oldFile = userInputs[0];
-    String newFile = userInputs[1];
+    String oldText = userInputs[0];
+    String newText = userInputs[1];
     String startingPath = userInputs[2];
 
-    System.out.println("oldFile is: " + oldFile);
-    System.out.println("newFile is: " + newFile);
+    System.out.println("oldText is: " + oldText);
+    System.out.println("newText is: " + newText);
     System.out.println("startingPath is: " + startingPath);
     System.out.println();
 
@@ -45,10 +46,11 @@ public class RenameFiles {
       System.out.println("This directory path does NOT exist: " + file);
     }
 
-    // Display all files in directory using listFiles() & a for loop.
+    // Get & display all files in directory using listFiles() & for loop.
+    File[] files = file.listFiles();
     try {
       // Get all existing filenames in given directory.
-      File[] files = file.listFiles();
+
       System.out.println("Files are:");
 
       // Display the names of the files.
@@ -59,8 +61,8 @@ public class RenameFiles {
     catch (Exception e) {
       System.err.println(e.getMessage());
     }
-
-    // TODO: renameAllFiles();
+    
+  // TODO: renameAllFiles();
 
   }
 
