@@ -59,12 +59,22 @@ public class RenameFiles {
           System.out.println(files[i].getName());
         }
       }
+      catch (ArrayIndexOutOfBoundsException e) {
+        e.printStackTrace();
+        System.out.println("There is an ArrayIndexOutOfBoundsException.");
+      }
+      catch (NullPointerException e) {
+        e.printStackTrace();
+        System.out.println("There is a NullPointerException.");
+      }
       catch (Exception e) {
         e.printStackTrace();
+        System.out.println("There is a general Exception.");
       }
     }
-    catch (Exception e) {
-      System.err.println(e.getMessage());
+    catch (NullPointerException e) {
+      e.printStackTrace();
+      System.out.println("There are no files that contain the text.");
     }
 
     System.out.println();
@@ -92,7 +102,6 @@ public class RenameFiles {
         countFound++;
       }
     }
-    //System.out.println("There are no files that contain the text.");
 
     System.out.println("Number of files found with text: " + countFound);
 
