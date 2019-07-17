@@ -1,7 +1,6 @@
 package com.javarenamefiles;
 
 import java.io.File;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -26,7 +25,7 @@ public class RenameFiles {
     // Check File object to see if it is a directory.
     try {
       boolean isDirectory = file.isDirectory();
-      if (isDirectory == false) {
+      if (!isDirectory) {
         System.out.println("This is NOT directory: " + file);
         return;
       }
@@ -38,7 +37,7 @@ public class RenameFiles {
     // Check File object to see if directory exists.
     try {
       boolean fileExists = file.exists();
-      if (fileExists == false) {
+      if (!fileExists) {
         System.out.println("This directory path does NOT exist: " + file);
         return;
       }
@@ -81,7 +80,7 @@ public class RenameFiles {
       boolean hasOldText = fileNames[j].contains(oldText);
 
       try {
-        if (hasOldText == true) {
+        if (hasOldText) {
           ArrayList<String> filesToChange = new ArrayList<String>();
           filesToChange.add(fileNames[j]);
           System.out.println("ArrayList has: " + filesToChange);
