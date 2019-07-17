@@ -61,9 +61,26 @@ public class RenameFiles {
     catch (Exception e) {
       System.err.println(e.getMessage());
     }
-    
-  // TODO: renameAllFiles();
 
+    // Check if any filenames in Files array contain the stringToReplace.
+    // If no - return from program with user message,
+    // "There are no files with this text. No files were renamed."
+    // If yes - Call renameAllFiles().
+    // Iterate through the files array & call getName() for each file.
+
+    String[] fileNames = new String[files.length];
+
+    for (int i = 0; i < files.length; i++) {
+      fileNames[i] = files[i].getName();
+    }
+
+    int countFound = 0;
+    for (int j = 0; j < fileNames.length; j++) {
+      boolean hasOldText = fileNames[j].contains(oldText);
+
+    }
+
+  // TODO: renameAllFiles();
   }
 
   private static String[] getInput() {
