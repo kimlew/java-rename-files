@@ -15,14 +15,14 @@ public class RenameFiles {
 
     // Note: This checks for the existing directory, not file.
     // For testing, use:  /Users/kimlew/temp
-    File fileObject = new File(startingPath);
+    File startPathFileObject = new File(startingPath);
 
-    if (isPathADirectory(fileObject)) return;
-    if (doesDirectoryExist(fileObject)) return;
+    if (isPathADirectory(startPathFileObject)) return;
+    if (doesDirectoryExist(startPathFileObject)) return;
 
     // Get all existing filenames in given directory & display all filenames
     // using listFiles() & for loop.
-    File[] filesOfFileTypeArray = fileObject.listFiles();
+    File[] filesOfFileTypeArray = startPathFileObject.listFiles();
     String[] fileNamesArray = new String[filesOfFileTypeArray.length];
     int countFound = 0;
 
@@ -38,10 +38,10 @@ public class RenameFiles {
     // If yes - Call renameAllFiles().
     // Iterate through the files array & call getName() for each file.
 
+    for (File aFileObjectFromArray : filesOfFileTypeArray) {
+      fileNamesArray.add(aFileObjectFromArray.getName());
+    }
 
-    //for (File aFileObjectFromArray : filesOfFileTypeArray) {
-    //  fileNamesArray.add(aFileObjectFromArray.getName());
-    //}
     for (int i = 0; i < filesOfFileTypeArray.length; i++) {
       fileNamesArray[i] = filesOfFileTypeArray[i].getName();
     }
