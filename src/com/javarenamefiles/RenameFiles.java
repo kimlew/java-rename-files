@@ -16,24 +16,23 @@ public class RenameFiles {
     // Note: This checks for the existing directory, not file.
     // For testing, use:  /Users/kimlew/temp
     File fileObject = new File(startingPath);
+
     if (isPathADirectory(fileObject)) return;
     if (doesDirectoryExist(fileObject)) return;
 
-    // Get & display all files in directory using listFiles() & for loop.
+    // Get et all existing filenames in given directory & display all
+    // filenames in directory using listFiles() & for loop.
     File[] filesOfFileTypeArray = fileObject.listFiles();
+    String[] fileNamesArray = new String[filesOfFileTypeArray.length];
+    int countFound = 0;
 
-    // Get all existing filenames in given directory.
-
-    System.out.println("Files are:");
-
-    // Display the names of the files.
-
-    //for ( File file : files) {
-    //  fileNames.add(file.getName());
+    System.out.println("The files in this directory are:");
+    //for (int i = 0; i < filesOfFileTypeArray.length; i++) {
+    //  System.out.println(filesOfFileTypeArray[i].getName());
     //}
 
-    for (int i = 0; i < filesOfFileTypeArray.length; i++) {
-      System.out.println(filesOfFileTypeArray[i].getName());
+    for (File aFileObjectFromArray : filesOfFileTypeArray) {
+      System.out.println(aFileObjectFromArray.getName());
     }
 
     System.out.println();
@@ -44,11 +43,9 @@ public class RenameFiles {
     // If yes - Call renameAllFiles().
     // Iterate through the files array & call getName() for each file.
 
-    String[] fileNamesArray = new String[filesOfFileTypeArray.length];
-    int countFound = 0;
 
-    //for ( File file : files) {
-    //  fileNames.add(file.getName());
+    //for (File aFileObjectFromArray : filesOfFileTypeArray) {
+    //  fileNamesArray.add(aFileObjectFromArray.getName());
     //}
     for (int i = 0; i < filesOfFileTypeArray.length; i++) {
       fileNamesArray[i] = filesOfFileTypeArray[i].getName();
