@@ -14,7 +14,6 @@ public class RenameFiles {
     String startingPath = userInputs[2];
 
     // Note: This checks for the existing directory, not a file.
-    // For testing, use:  /Users/kimlew/temp
     File startPathFileObject = new File(startingPath);
 
     if (isPathADirectory(startPathFileObject)) return;
@@ -25,16 +24,7 @@ public class RenameFiles {
     int countFound = 0;
 
     getDirectoryFilesAndDisplay(filesOfFileTypeArray);
-
-    // Get filenames from array that is of type, File object,
-    // filesOfFileTypeArray & put into String array, fileNamesArray - for
-    // easier manipulation.
-
-    for (File aFileObjectFromArray : filesOfFileTypeArray) {
-      fileNamesArray.add(aFileObjectFromArray.getName());
-    }
-    //System.out.println("The files in the String array are:");
-    //System.out.println(fileNamesArray);
+    putFileObjectFilenamesInStringArray(filesOfFileTypeArray, fileNamesArray);
 
     // Check if any filenames in String array contain oldText.
     // If no: Return from program with user message, No files were renamed."
@@ -60,15 +50,29 @@ public class RenameFiles {
     else {
       System.out.println("The files to change are: " + filesToChange);
     }
+    // For testing, use:  /Users/kimlew/temp
 
+    // Do I need an object to pass the String array & the strings?
     renameAllFiles(filesToChange, oldText, newText);
 
   } // End of main().
 
+  private static void putFileObjectFilenamesInStringArray(File[] filesOfFileTypeArray, ArrayList<String> fileNamesArray) {
+    // Get filenames from array that is of type, File object,
+    // filesOfFileTypeArray & put into String array, fileNamesArray - for
+    // easier manipulation.
+
+    for (File aFileObjectFromArray : filesOfFileTypeArray) {
+      fileNamesArray.add(aFileObjectFromArray.getName());
+    }
+    //System.out.println("The files in the String array are:");
+    //System.out.println(fileNamesArray);
+  }
+
   private static void getDirectoryFilesAndDisplay(File[] filesOfFileTypeArray) {
     // Get all existing filenames in given directory & display all filenames
     // using listFiles() & for loop.
-    
+
     System.out.println("The files in this directory are:");
     for (File aFileObjectFromArray : filesOfFileTypeArray) {
       System.out.println(aFileObjectFromArray.getName());
