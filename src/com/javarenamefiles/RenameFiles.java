@@ -13,7 +13,7 @@ public class RenameFiles {
     String newText = userInputs[1];
     String startingPath = userInputs[2];
 
-    // Note: This checks for the existing directory, not file.
+    // Note: This checks for the existing directory, not a file.
     // For testing, use:  /Users/kimlew/temp
     File startPathFileObject = new File(startingPath);
 
@@ -39,12 +39,11 @@ public class RenameFiles {
     for (File aFileObjectFromArray : filesOfFileTypeArray) {
       fileNamesArray.add(aFileObjectFromArray.getName());
     }
-    System.out.println("The files in the String array are:");
-    System.out.println(fileNamesArray);
-    System.out.println();
+    //System.out.println("The files in the String array are:");
+    //System.out.println(fileNamesArray);
 
     // Check if any filenames in String array contain oldText.
-    // If no: Return from program with user message, ...No files were renamed."
+    // If no: Return from program with user message, No files were renamed."
     // If yes: Call renameAllFiles().
     boolean hasOldText;
     ArrayList<String> filesToChange = new ArrayList<>();
@@ -59,10 +58,13 @@ public class RenameFiles {
         countFound++;
       }
     }
-    System.out.println("ArrayList with files to change has: " + filesToChange);
     System.out.println("Number of files found with text: " + countFound);
+
     if (countFound == 0) {
-      System.out.println("There are no files with this text. No files were renamed.");
+      System.out.println("No files were renamed.");
+    }
+    else {
+      System.out.println("The files to change are: " + filesToChange);
     }
 
     // TODO: Call renameAllFiles();
