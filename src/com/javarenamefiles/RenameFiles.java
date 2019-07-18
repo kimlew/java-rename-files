@@ -21,34 +21,17 @@ public class RenameFiles {
 
     // Get & display all files in directory using listFiles() & for loop.
     File[] files = file.listFiles();
-    try {
-      // Get all existing filenames in given directory.
 
-      System.out.println("Files are:");
+    // Get all existing filenames in given directory.
 
-      // Display the names of the files.
-      try {
-        for (int i = 0; i < files.length; i++) {
-          System.out.println(files[i].getName());
-        }
-      }
-      catch (ArrayIndexOutOfBoundsException e) {
-        e.printStackTrace();
-        System.out.println("There is an ArrayIndexOutOfBoundsException.");
-      }
-      catch (NullPointerException e) {
-        e.printStackTrace();
-        System.out.println("There is a NullPointerException.");
-      }
-      catch (Exception e) {
-        e.printStackTrace();
-        System.out.println("There is a general Exception.");
-      }
+    System.out.println("Files are:");
+
+    // Display the names of the files.
+
+    for (int i = 0; i < files.length; i++) {
+      System.out.println(files[i].getName());
     }
-    catch (NullPointerException e) {
-      e.printStackTrace();
-      System.out.println("There are no files that contain the text.");
-    }
+
     System.out.println();
 
     // Check if any filenames in Files array contain the stringToReplace.
@@ -60,7 +43,9 @@ public class RenameFiles {
     String[] fileNames = new String[files.length];
     int countFound = 0;
 
-
+    //for ( File file : files) {
+    //  fileNames.add(file.getName());
+    //}
     for (int i = 0; i < files.length; i++) {
       fileNames[i] = files[i].getName();
     }
@@ -84,30 +69,21 @@ public class RenameFiles {
 
   private static boolean doesDirectoryExist(File file) {
     // Check File object to see if directory exists.
-    try {
-      boolean fileExists = file.exists();
-      if (!fileExists) {
-        System.out.println("This directory path does NOT exist: " + file);
-        return true;
-      }
-    }
-    catch (Exception e) {
+
+    boolean fileExists = file.exists();
+    if (!fileExists) {
       System.out.println("This directory path does NOT exist: " + file);
+      return true;
     }
     return false;
   }
 
   private static boolean isPathADirectory(File file) {
     // Check File object to see if it is a directory.
-    try {
-      boolean isDirectory = file.isDirectory();
-      if (!isDirectory) {
-        System.out.println("This is NOT directory: " + file);
-        return true;
-      }
-    }
-    catch (Exception e) {
+    boolean isDirectory = file.isDirectory();
+    if (!isDirectory) {
       System.out.println("This is NOT directory: " + file);
+      return true;
     }
     return false;
   }
