@@ -15,12 +15,12 @@ public class RenameFiles {
 
     // Note: This checks for the existing directory, not file.
     // For testing, use:  /Users/kimlew/temp
-    File file = new File(startingPath);
-    if (isPathADirectory(file)) return;
-    if (doesDirectoryExist(file)) return;
+    File fileObject = new File(startingPath);
+    if (isPathADirectory(fileObject)) return;
+    if (doesDirectoryExist(fileObject)) return;
 
     // Get & display all files in directory using listFiles() & for loop.
-    File[] files = file.listFiles();
+    File[] filesOfFileTypeArray = fileObject.listFiles();
 
     // Get all existing filenames in given directory.
 
@@ -28,8 +28,12 @@ public class RenameFiles {
 
     // Display the names of the files.
 
-    for (int i = 0; i < files.length; i++) {
-      System.out.println(files[i].getName());
+    //for ( File file : files) {
+    //  fileNames.add(file.getName());
+    //}
+
+    for (int i = 0; i < filesOfFileTypeArray.length; i++) {
+      System.out.println(filesOfFileTypeArray[i].getName());
     }
 
     System.out.println();
@@ -40,21 +44,22 @@ public class RenameFiles {
     // If yes - Call renameAllFiles().
     // Iterate through the files array & call getName() for each file.
 
-    String[] fileNames = new String[files.length];
+    String[] fileNamesArray = new String[filesOfFileTypeArray.length];
     int countFound = 0;
 
     //for ( File file : files) {
     //  fileNames.add(file.getName());
     //}
-    for (int i = 0; i < files.length; i++) {
-      fileNames[i] = files[i].getName();
+    for (int i = 0; i < filesOfFileTypeArray.length; i++) {
+      fileNamesArray[i] = filesOfFileTypeArray[i].getName();
     }
 
-    for (int j = 0; j < fileNames.length; j++) {
-      boolean hasOldText = fileNames[j].contains(oldText);
+    for (int j = 0; j < fileNamesArray.length; j++) {
+      boolean hasOldText = fileNamesArray[j].contains(oldText);
       if (hasOldText) {
         ArrayList<String> filesToChange = new ArrayList<>();
-        filesToChange.add(fileNames[j]);
+        filesToChange.add(fileNamesArray[j]);
+
         System.out.println("ArrayList with files to change has: " + filesToChange);
         // TODO: Add path to oldText = for full path & filename.
         countFound++;
