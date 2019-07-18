@@ -43,15 +43,9 @@ public class RenameFiles {
     System.out.println(fileNamesArray);
     System.out.println();
 
-    //for (int i = 0; i < filesOfFileTypeArray.length; i++) {
-    //  fileNamesArray[i] = filesOfFileTypeArray[i].getName();
-    //}
-
     // Check if any filenames in String array contain oldText.
-    // If no: Return from program with user message,
-    // "There are no files with this text. No files were renamed."
+    // If no: Return from program with user message, ...No files were renamed."
     // If yes: Call renameAllFiles().
-    // Iterate through the files array & call getName() for each file.
     boolean hasOldText;
     ArrayList<String> filesToChange = new ArrayList<>();
 
