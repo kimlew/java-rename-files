@@ -20,21 +20,16 @@ public class RenameFiles {
     if (isPathADirectory(fileObject)) return;
     if (doesDirectoryExist(fileObject)) return;
 
-    // Get et all existing filenames in given directory & display all
-    // filenames in directory using listFiles() & for loop.
+    // Get all existing filenames in given directory & display all filenames
+    // using listFiles() & for loop.
     File[] filesOfFileTypeArray = fileObject.listFiles();
     String[] fileNamesArray = new String[filesOfFileTypeArray.length];
     int countFound = 0;
 
     System.out.println("The files in this directory are:");
-    //for (int i = 0; i < filesOfFileTypeArray.length; i++) {
-    //  System.out.println(filesOfFileTypeArray[i].getName());
-    //}
-
     for (File aFileObjectFromArray : filesOfFileTypeArray) {
       System.out.println(aFileObjectFromArray.getName());
     }
-
     System.out.println();
 
     // Check if any filenames in Files array contain the stringToReplace.
