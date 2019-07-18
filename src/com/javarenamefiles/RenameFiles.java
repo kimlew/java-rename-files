@@ -20,17 +20,11 @@ public class RenameFiles {
     if (isPathADirectory(startPathFileObject)) return;
     if (doesDirectoryExist(startPathFileObject)) return;
 
-    // Get all existing filenames in given directory & display all filenames
-    // using listFiles() & for loop.
     File[] filesOfFileTypeArray = startPathFileObject.listFiles();
     ArrayList<String> fileNamesArray = new ArrayList<>();
     int countFound = 0;
 
-    System.out.println("The files in this directory are:");
-    for (File aFileObjectFromArray : filesOfFileTypeArray) {
-      System.out.println(aFileObjectFromArray.getName());
-    }
-    System.out.println();
+    getDirectoryFilesAndDisplay(filesOfFileTypeArray);
 
     // Get filenames from array that is of type, File object,
     // filesOfFileTypeArray & put into String array, fileNamesArray - for
@@ -70,6 +64,17 @@ public class RenameFiles {
     renameAllFiles(filesToChange, oldText, newText);
 
   } // End of main().
+
+  private static void getDirectoryFilesAndDisplay(File[] filesOfFileTypeArray) {
+    // Get all existing filenames in given directory & display all filenames
+    // using listFiles() & for loop.
+    
+    System.out.println("The files in this directory are:");
+    for (File aFileObjectFromArray : filesOfFileTypeArray) {
+      System.out.println(aFileObjectFromArray.getName());
+    }
+    System.out.println();
+  }
 
   private static boolean doesDirectoryExist(File file) {
     // Check File object to see if directory exists.
