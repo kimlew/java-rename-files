@@ -23,7 +23,7 @@ public class RenameFiles {
     // Get all existing filenames in given directory & display all filenames
     // using listFiles() & for loop.
     File[] filesOfFileTypeArray = startPathFileObject.listFiles();
-    String[] fileNamesArray = new String[filesOfFileTypeArray.length];
+    ArrayList<String> fileNamesArray = new ArrayList<>();
     int countFound = 0;
 
     System.out.println("The files in this directory are:");
@@ -32,35 +32,46 @@ public class RenameFiles {
     }
     System.out.println();
 
-    // Check if any filenames in Files array contain the stringToReplace.
-    // If no - return from program with user message,
-    // "There are no files with this text. No files were renamed."
-    // If yes - Call renameAllFiles().
-    // Iterate through the files array & call getName() for each file.
+    // Get filenames from array that is of type, File object,
+    // filesOfFileTypeArray & put into String array, fileNamesArray - for
+    // easier manipulation.
 
     for (File aFileObjectFromArray : filesOfFileTypeArray) {
       fileNamesArray.add(aFileObjectFromArray.getName());
     }
+    System.out.println("The files in the String array are:");
+    System.out.println(fileNamesArray);
+    System.out.println();
 
-    for (int i = 0; i < filesOfFileTypeArray.length; i++) {
-      fileNamesArray[i] = filesOfFileTypeArray[i].getName();
-    }
+    //for (int i = 0; i < filesOfFileTypeArray.length; i++) {
+    //  fileNamesArray[i] = filesOfFileTypeArray[i].getName();
+    //}
 
-    for (int j = 0; j < fileNamesArray.length; j++) {
-      boolean hasOldText = fileNamesArray[j].contains(oldText);
+    // Check if any filenames in String array contain oldText.
+    // If no: Return from program with user message,
+    // "There are no files with this text. No files were renamed."
+    // If yes: Call renameAllFiles().
+    // Iterate through the files array & call getName() for each file.
+    boolean hasOldText;
+    ArrayList<String> filesToChange = new ArrayList<>();
+
+    for (String aFileFromNamesArray : fileNamesArray) {
+      hasOldText = aFileFromNamesArray.contains(oldText);
+
       if (hasOldText) {
-        ArrayList<String> filesToChange = new ArrayList<>();
-        filesToChange.add(fileNamesArray[j]);
+        filesToChange.add(aFileFromNamesArray);
 
-        System.out.println("ArrayList with files to change has: " + filesToChange);
         // TODO: Add path to oldText = for full path & filename.
         countFound++;
       }
     }
-
+    System.out.println("ArrayList with files to change has: " + filesToChange);
     System.out.println("Number of files found with text: " + countFound);
+    if (countFound == 0) {
+      System.out.println("There are no files with this text. No files were renamed.");
+    }
 
-    // TODO: renameAllFiles();
+    // TODO: Call renameAllFiles();
 
   } // End of main().
 
