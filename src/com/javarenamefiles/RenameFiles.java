@@ -67,7 +67,7 @@ public class RenameFiles {
       System.out.println("The files to change are: " + filesToChange);
     }
 
-    // TODO: Call renameAllFiles();
+    renameAllFiles(filesToChange, oldText, newText);
 
   } // End of main().
 
@@ -119,8 +119,13 @@ public class RenameFiles {
     return userInputs;
   }
 
-  //private static void renameAllFiles() {
-  //
-  //}
+  private static void renameAllFiles(String[] filesToChange) {
+    System.out.println("IN renameAllFiles now...");
+    // Get getAbsolutePath() from ArrayList.
+    for (String aFile : filesToChange) {
+
+    }
+
+  }
 
 } // End of class.
