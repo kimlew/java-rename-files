@@ -49,11 +49,12 @@ public class RenameFiles {
       System.out.println("No files were renamed.");
     }
     else {
-      System.out.println("The files to change are: " + filesToChange);
+      System.out.println("The file(s) to change are: " +
+          filesToChange.toString().replace("[","").replace("]",""));
     }
     System.out.println();
 
-    renameAllFiles(filesToChange, oldText, newText);
+    renameAllFiles(filesToChange, oldText, newText, startingPath);
 
     // For testing, use:  /Users/kimlew/temp
   } // End of main().
@@ -69,8 +70,6 @@ public class RenameFiles {
     for (File aFileObjectFromArray : filesOfFileTypeArray) {
       fileNamesArray.add(aFileObjectFromArray.getName());
     }
-    //System.out.println("The files in the String array are:");
-    //System.out.println(fileNamesArray);
   }
 
   private static void getDirectoryFilesAndDisplay(File[] filesOfFileTypeArray) {
@@ -133,7 +132,9 @@ public class RenameFiles {
 
   private static void renameAllFiles(ArrayList<File> filesToChange,
                                      String oldText,
-                                     String newText) {
+                                     String newText,
+                                     String startingPath
+                                     ) {
     int renamedCount = 0;
 
     for (File aFile : filesToChange) {
@@ -162,7 +163,13 @@ public class RenameFiles {
         System.out.println("File cannot be renamed.");
       }
     } // End of foreach loop.
+    System.out.println();
     System.out.println("Total number of files renamed: " + renamedCount);
+
+    File newStartPath = new File(startingPath);
+    File[] newArray = newStartPath.listFiles();
+    getDirectoryFilesAndDisplay(newArray);
+
   } // End of renameAllFiles().
 
 } // End of class.
