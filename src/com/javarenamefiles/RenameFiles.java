@@ -26,17 +26,19 @@ public class RenameFiles {
     getDirectoryFilesAndDisplay(filesOfFileTypeArray);
     putFileObjectFilenamesInStringArray(filesOfFileTypeArray, fileNamesArray);
 
-    // Check if any filenames in String array contain oldText.
+    // Check if any filenames in String array contain oldText, i.e., find
+    // match.
     // If no: Return from program with user message, No files were renamed."
     // If yes: Call renameAllFiles().
     boolean hasOldText;
-    ArrayList<String> filesToChange = new ArrayList<>();
+    // ArrayList<String> filesToChange = new ArrayList<>();
+    ArrayList<File> filesToChange = new ArrayList<>();
 
-    for (String aFileFromNamesArray : fileNamesArray) {
-      hasOldText = aFileFromNamesArray.contains(oldText);
+    for (File aFileOfFileTypeArray : filesOfFileTypeArray) {
+      hasOldText = aFileOfFileTypeArray.getName().contains(oldText);
 
       if (hasOldText) {
-        filesToChange.add(aFileFromNamesArray);
+        filesToChange.add(aFileOfFileTypeArray);
 
         // TODO: Add path to oldText = for full path & filename.
         countFound++;
@@ -53,11 +55,15 @@ public class RenameFiles {
     // For testing, use:  /Users/kimlew/temp
 
     // Do I need an object to pass the String array & the strings?
-    renameAllFiles(filesToChange, oldText, newText);
+    renameAllFiles(filesOfFileTypeArray, filesToChange, startingPath,
+        oldText, newText);
 
   } // End of main().
 
-  private static void putFileObjectFilenamesInStringArray(File[] filesOfFileTypeArray, ArrayList<String> fileNamesArray) {
+  private static void putFileObjectFilenamesInStringArray(
+      File[] filesOfFileTypeArray,
+      ArrayList<String> fileNamesArray) {
+
     // Get filenames from array that is of type, File object,
     // filesOfFileTypeArray & put into String array, fileNamesArray - for
     // easier manipulation.
@@ -128,13 +134,34 @@ public class RenameFiles {
     return userInputs;
   }
 
-  private static void renameAllFiles(String[] filesToChange) {
+  private static void renameAllFiles(File[] filesOfFileTypeArray,
+                                     ArrayList<File> filesToChange,
+                                     String startingPath,
+                                     String oldText,
+                                     String newText) {
     System.out.println("IN renameAllFiles now...");
     // Get getAbsolutePath() from ArrayList.
-    for (String aFile : filesToChange) {
 
+    for (File aFile : filesToChange) {
+      String oldPathAndText;
+      String newPathAndText;
+
+      // TODO: How do I rename these IN the file system?
+      //oldPathAndText.renameTo(newPathAndText);
     }
+    //for (File f: filesOfFileTypeArray) {
+    //  String newName = f.getAbsolutePath().replace("Old", "New");
+    //  boolean isRenamed = f.renameTo(new File(newName));
+    //}
 
+    for (File aFile : filesToChange) {
+      // System.out.println("Absolute path from ArrayList is: " + aFile
+      // .getPath());
+
+      // TODO: Create replacement path + filename using getParent​() & newText.
+
+      boolean isRenamed = aFile.renameTo(new File(pathWithNewText));
+    }
   }
 
 } // End of class.
