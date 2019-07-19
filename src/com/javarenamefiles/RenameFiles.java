@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class RenameFiles {
 
   public static void main(String[] args) {
-    String[] userInputs = getInput();
+    String[] userInputs = getInputs();
 
     String oldText = userInputs[0];
     String newText = userInputs[1];
@@ -105,14 +105,14 @@ public class RenameFiles {
     return false;
   }
 
-  private static String[] getInput() {
+  private static String[] getInputs() {
     Scanner input = new Scanner(System.in);
 
     // Use read(), next(), or readLine() to read input.
-    System.out.println("Enter the string you want to replace: ");
+    System.out.println("Enter the text you want to replace: ");
     String string_to_replace = input.next();
 
-    System.out.println("Enter the replacement string: ");
+    System.out.println("Enter the replacement text: ");
     String replacement_string = input.next();
 
     System.out.println("Enter the starting path of the files: ");
@@ -155,7 +155,7 @@ public class RenameFiles {
 
       // Check if the file can be renamed to the abstract path name.
       if (isRenamed) {
-        System.out.println(oldFilename + " has been renamed to " + newFilename + ".");
+        System.out.println(oldFilename + " - has been renamed to: " + newFilename);
         renamedCount++;
       }
       else {
