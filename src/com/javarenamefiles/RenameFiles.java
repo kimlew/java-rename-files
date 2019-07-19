@@ -23,9 +23,6 @@ public class RenameFiles {
     ArrayList<String> fileNamesArray = new ArrayList<>();
     int countFound = 0;
 
-    getDirectoryFilesAndDisplay(filesOfFileTypeArray);
-    putFileObjectFilenamesInStringArray(filesOfFileTypeArray, fileNamesArray);
-
     // Check if any filenames in String array contain oldText, i.e., find
     // match.
     // If no: Return from program with user message, No files were renamed."
@@ -38,23 +35,24 @@ public class RenameFiles {
       hasOldText = aFileOfFileTypeArray.getName().contains(oldText);
 
       if (hasOldText) {
+        getDirectoryFilesAndDisplay(filesOfFileTypeArray);
+        putFileObjectFilenamesInStringArray(filesOfFileTypeArray, fileNamesArray);
         filesToChange.add(aFileOfFileTypeArray);
         countFound++;
       }
     }
     System.out.println();
+
     System.out.println("Number of files found with text: " + countFound);
 
-    if (countFound == 0) {
-      System.out.println("No files were renamed.");
-    }
-    else {
+    if (countFound > 0) {
       System.out.println("The file(s) to change are: " +
           filesToChange.toString().replace("[","").replace("]",""));
     }
     System.out.println();
 
-    renameAllFiles(filesToChange, oldText, newText, startingPath);
+    renameAllFiles(filesToChange, oldText, newText, startingPath,
+        filesOfFileTypeArray, countFound);
 
     // For testing, use:  /Users/kimlew/temp
   } // End of main().
@@ -108,13 +106,13 @@ public class RenameFiles {
     Scanner input = new Scanner(System.in);
 
     // Use read(), next(), or readLine() to read input.
-    System.out.println("Enter the text you want to replace: ");
+    System.out.print("Enter the text you want to replace: ");
     String string_to_replace = input.next();
 
-    System.out.println("Enter the replacement text: ");
+    System.out.print("Enter the replacement text: ");
     String replacement_string = input.next();
 
-    System.out.println("Enter the starting path of the files: ");
+    System.out.print("Enter the starting path of the files: ");
     String starting_path = input.next();
 
     System.out.println();
@@ -133,10 +131,12 @@ public class RenameFiles {
   private static void renameAllFiles(ArrayList<File> filesToChange,
                                      String oldText,
                                      String newText,
-                                     String startingPath
+                                     String startingPath,
+                                     File[] filesOfFileTypeArray,
+                                     int countFound
                                      ) {
-    int renamedCount = 0;
 
+    System.out.println("--- Changes ---");
     for (File aFile : filesToChange) {
       //  Build old filename using getName(). Build new filename using
       //  replace with oldText & newText. Rename these IN the file system.
@@ -155,18 +155,20 @@ public class RenameFiles {
       // Check if the file can be renamed to the abstract path name.
       if (isRenamed) {
         System.out.println(oldFilename + " - has been renamed to: " + newFilename);
-        renamedCount++;
       }
       else {
         System.out.println("File cannot be renamed.");
       }
     } // End of foreach loop.
     System.out.println();
-    System.out.println("Total number of files renamed: " + renamedCount);
+    System.out.println(countFound + " files were renamed.");
 
     File newStartPath = new File(startingPath);
     File[] newArray = newStartPath.listFiles();
-    getDirectoryFilesAndDisplay(newArray);
+
+    if (countFound > 0) {
+      getDirectoryFilesAndDisplay(newArray);
+    }
 
   } // End of renameAllFiles().
 
