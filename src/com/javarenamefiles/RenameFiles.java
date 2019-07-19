@@ -39,8 +39,6 @@ public class RenameFiles {
 
       if (hasOldText) {
         filesToChange.add(aFileOfFileTypeArray);
-
-        // TODO: Add path to oldText = for full path & filename.
         countFound++;
       }
     }
@@ -55,9 +53,7 @@ public class RenameFiles {
     }
     System.out.println();
 
-    // Do I need an object to pass the String array & the strings?
-    renameAllFiles(filesOfFileTypeArray, filesToChange, startingPath,
-        oldText, newText);
+    renameAllFiles(filesToChange, oldText, newText);
 
     // For testing, use:  /Users/kimlew/temp
   } // End of main().
@@ -126,7 +122,6 @@ public class RenameFiles {
     System.out.println("String to Replace:\t" + string_to_replace);
     System.out.println("Replacement String:\t" + replacement_string);
     System.out.println("Starting Path of Files:\t " + starting_path);
-    System.out.println();
 
     String[] userInputs = new String[3];
     userInputs[0] = string_to_replace;
@@ -136,57 +131,38 @@ public class RenameFiles {
     return userInputs;
   }
 
-  private static void renameAllFiles(File[] filesOfFileTypeArray,
-                                     ArrayList<File> filesToChange,
-                                     String startingPath,
+  private static void renameAllFiles(ArrayList<File> filesToChange,
                                      String oldText,
                                      String newText) {
+    int renamedCount = 0;
 
     for (File aFile : filesToChange) {
-      //  TODO: Create replacement path+filename using getParent​() & newText.
-      //  Use: public String getParent​() OR public File getParentFile​().
-      //  Rename these IN the file system.
+      //  Build old filename using getName(). Build new filename using
+      //  replace with oldText & newText. Rename these IN the file system.
 
-      System.out.println("aFile is: " + aFile);
-
-      String thePathStr = aFile.getParent();
-      System.out.println("Path using getParent() is: \t\t" + thePathStr);
-      File thePathF = aFile.getParentFile();
-      System.out.println("Path using getParentFile() is: " + thePathF);
-      System.out.println();
-
-      // Have path. TODO: Change respective files with new text, then rename.
-
+      // Note: For newFilename, just create new filename with extension
+      // to use in replace().
       String oldFilename = aFile.getName();
       String newFilename = oldFilename.replace(oldText, newText);
-      // TODO: Create just the new filename with extension to use in replace()
 
-      System.out.println("OLD Filename: \t" + oldFilename);
-      System.out.println("NEW Filename: \t" + newFilename);
-
+      // Change applicable files to new filenames, then rename in filesystem.
       String newPathAndText = aFile.getAbsolutePath().replace(oldFilename,
           newFilename);
-      System.out.println("newPathAndText is: " + newPathAndText);
-      System.out.println();
-
-      //System.out.println("aFile.getCanonicalPath(): " + aFile
-      // .getCanonicalPath());
-      //System.out.println("aFile.getAbsolutePath(): " + aFile.getAbsolutePath());
-      //System.out.println("aFile.getPath(): \t\t" + aFile.getPath());
 
       boolean isRenamed = aFile.renameTo(new File(newPathAndText));
-      System.out.println("isRenamed is: " + isRenamed);
-      System.out.println();
+      // System.out.println("isRenamed is: " + isRenamed);
+      // System.out.println();
 
       // Check if the file can be renamed to the abstract path name.
       if (isRenamed) {
-        System.out.println("File has been renamed.");
+        System.out.println(oldFilename + " has been renamed to " + newFilename + ".");
+        renamedCount++;
       }
       else {
         System.out.println("File cannot be renamed.");
       }
-      System.out.println();
     } // End of foreach loop.
+    System.out.println("Total number of files renamed: " + renamedCount);
   } // End of renameAllFiles().
 
 } // End of class.
