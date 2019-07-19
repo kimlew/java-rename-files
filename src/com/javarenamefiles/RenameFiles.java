@@ -151,8 +151,6 @@ public class RenameFiles {
           newFilename);
 
       boolean isRenamed = aFile.renameTo(new File(newPathAndText));
-      // System.out.println("isRenamed is: " + isRenamed);
-      // System.out.println();
 
       // Check if the file can be renamed to the abstract path name.
       if (isRenamed) {
