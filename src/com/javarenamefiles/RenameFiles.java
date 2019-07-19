@@ -44,6 +44,7 @@ public class RenameFiles {
         countFound++;
       }
     }
+    System.out.println();
     System.out.println("Number of files found with text: " + countFound);
 
     if (countFound == 0) {
@@ -52,12 +53,13 @@ public class RenameFiles {
     else {
       System.out.println("The files to change are: " + filesToChange);
     }
-    // For testing, use:  /Users/kimlew/temp
+    System.out.println();
 
     // Do I need an object to pass the String array & the strings?
     renameAllFiles(filesOfFileTypeArray, filesToChange, startingPath,
         oldText, newText);
 
+    // For testing, use:  /Users/kimlew/temp
   } // End of main().
 
   private static void putFileObjectFilenamesInStringArray(
@@ -79,9 +81,9 @@ public class RenameFiles {
     // Get all existing filenames in given directory & display all filenames
     // using listFiles() & for loop.
 
-    System.out.println("The files in this directory are:");
+    System.out.print("The files in this directory are: ");
     for (File aFileObjectFromArray : filesOfFileTypeArray) {
-      System.out.println(aFileObjectFromArray.getName());
+      System.out.print(aFileObjectFromArray.getName() + " | ");
     }
     System.out.println();
   }
@@ -139,29 +141,52 @@ public class RenameFiles {
                                      String startingPath,
                                      String oldText,
                                      String newText) {
-    System.out.println("IN renameAllFiles now...");
-    // Get getAbsolutePath() from ArrayList.
 
     for (File aFile : filesToChange) {
-      String oldPathAndText;
-      String newPathAndText;
+      //  TODO: Create replacement path+filename using getParent​() & newText.
+      //  Use: public String getParent​() OR public File getParentFile​().
+      //  Rename these IN the file system.
 
-      // TODO: How do I rename these IN the file system?
-      //oldPathAndText.renameTo(newPathAndText);
-    }
-    //for (File f: filesOfFileTypeArray) {
-    //  String newName = f.getAbsolutePath().replace("Old", "New");
-    //  boolean isRenamed = f.renameTo(new File(newName));
-    //}
+      System.out.println("aFile is: " + aFile);
 
-    for (File aFile : filesToChange) {
-      // System.out.println("Absolute path from ArrayList is: " + aFile
-      // .getPath());
+      String thePathStr = aFile.getParent();
+      System.out.println("Path using getParent() is: \t\t" + thePathStr);
+      File thePathF = aFile.getParentFile();
+      System.out.println("Path using getParentFile() is: " + thePathF);
+      System.out.println();
 
-      // TODO: Create replacement path + filename using getParent​() & newText.
+      // Have path. TODO: Change respective files with new text, then rename.
 
-      boolean isRenamed = aFile.renameTo(new File(pathWithNewText));
-    }
-  }
+      String oldFilename = aFile.getName();
+      String newFilename = oldFilename.replace(oldText, newText);
+      // TODO: Create just the new filename with extension to use in replace()
+
+      System.out.println("OLD Filename: \t" + oldFilename);
+      System.out.println("NEW Filename: \t" + newFilename);
+
+      String newPathAndText = aFile.getAbsolutePath().replace(oldFilename,
+          newFilename);
+      System.out.println("newPathAndText is: " + newPathAndText);
+      System.out.println();
+
+      //System.out.println("aFile.getCanonicalPath(): " + aFile
+      // .getCanonicalPath());
+      //System.out.println("aFile.getAbsolutePath(): " + aFile.getAbsolutePath());
+      //System.out.println("aFile.getPath(): \t\t" + aFile.getPath());
+
+      boolean isRenamed = aFile.renameTo(new File(newPathAndText));
+      System.out.println("isRenamed is: " + isRenamed);
+      System.out.println();
+
+      // Check if the file can be renamed to the abstract path name.
+      if (isRenamed) {
+        System.out.println("File has been renamed.");
+      }
+      else {
+        System.out.println("File cannot be renamed.");
+      }
+      System.out.println();
+    } // End of foreach loop.
+  } // End of renameAllFiles().
 
 } // End of class.
