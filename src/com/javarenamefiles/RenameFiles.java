@@ -35,11 +35,14 @@ public class RenameFiles {
       hasOldText = aFileOfFileTypeArray.getName().contains(oldText);
 
       if (hasOldText) {
-        getDirectoryFilesAndDisplay(filesOfFileTypeArray);
-        putFileObjectFilenamesInStringArray(filesOfFileTypeArray, fileNamesArray);
+
         filesToChange.add(aFileOfFileTypeArray);
         countFound++;
       }
+    }
+    if (countFound > 0) {
+      getDirectoryFilesAndDisplay(filesOfFileTypeArray);
+      putFileObjectFilenamesInStringArray(filesOfFileTypeArray, fileNamesArray);
     }
     System.out.println();
 
@@ -74,7 +77,7 @@ public class RenameFiles {
     // Get all existing filenames in given directory & display all filenames
     // using listFiles() & for loop.
 
-    System.out.print("The files in this directory are: ");
+    System.out.print("The files in this directory are: | ");
     for (File aFileObjectFromArray : filesOfFileTypeArray) {
       System.out.print(aFileObjectFromArray.getName() + " | ");
     }
