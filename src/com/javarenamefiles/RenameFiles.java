@@ -48,14 +48,6 @@ public class RenameFiles {
     }
     System.out.println();
 
-    System.out.println("Number of files found with text: " + countFound);
-
-    if (countFound > 0) {
-      System.out.println("The file(s) to change are: " +
-          filesToChange.toString().replace("[","").replace("]",""));
-    }
-    System.out.println();
-
     renameAllFiles(filesToChange, oldText, newText, startingPath,
         filesOfFileTypeArray, countFound);
 
@@ -81,7 +73,7 @@ public class RenameFiles {
 
     ArrayList<String> theArray = new ArrayList<>();
 
-    System.out.print("The file(s) in this directory are: ");
+    System.out.print("File(s) in this directory: ");
     for (File aFileObjectFromArray : filesOfFileTypeArray) {
       theArray.add(aFileObjectFromArray.getName());
       Collections.sort(theArray);
@@ -128,8 +120,8 @@ public class RenameFiles {
     String starting_path = input.next();
 
     System.out.println();
-    System.out.println("String to Replace:\t" + string_to_replace);
-    System.out.println("Replacement String:\t" + replacement_string);
+    System.out.println("Text to Replace:\t" + string_to_replace);
+    System.out.println("Replacement Text:\t" + replacement_string);
     System.out.println("Starting Path of Files:\t " + starting_path);
 
     String[] userInputs = new String[3];
@@ -148,7 +140,8 @@ public class RenameFiles {
                                      int countFound
                                      ) {
 
-    System.out.println("--- Changes ---");
+    System.out.println(countFound + " files were found and renamed.");
+
     for (File aFile : filesToChange) {
       //  Build old filename using getName(). Build new filename using
       //  replace with oldText & newText. Rename these IN the file system.
@@ -166,14 +159,12 @@ public class RenameFiles {
 
       // Check if the file can be renamed to the abstract path name.
       if (isRenamed) {
-        System.out.println(oldFilename + " - has been renamed to: " + newFilename);
+        System.out.println(oldFilename + " - has been renamed to - " + newFilename);
       }
       else {
         System.out.println("File cannot be renamed.");
       }
     } // End of foreach loop.
-    System.out.println();
-    System.out.println(countFound + " files were renamed.");
 
     File newStartPath = new File(startingPath);
     File[] newArray = newStartPath.listFiles();
