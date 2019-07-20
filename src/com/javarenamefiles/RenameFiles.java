@@ -2,6 +2,8 @@ package com.javarenamefiles;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class RenameFiles {
@@ -77,11 +79,18 @@ public class RenameFiles {
     // Get all existing filenames in given directory & display all filenames
     // using listFiles() & for loop.
 
-    System.out.print("The files in this directory are: | ");
+    ArrayList<String> theArray = new ArrayList<>();
+
+    System.out.print("The file(s) in this directory are: ");
     for (File aFileObjectFromArray : filesOfFileTypeArray) {
-      System.out.print(aFileObjectFromArray.getName() + " | ");
+      theArray.add(aFileObjectFromArray.getName());
+      Collections.sort(theArray);
     }
-    System.out.println();
+
+    // Replace the '[' and ']' with empty space & display.
+    String theList =
+        Arrays.toString(theArray.toArray()).replace("[", "").replace("]", "");
+    System.out.println(theList);
   }
 
   private static boolean doesDirectoryExist(File file) {
