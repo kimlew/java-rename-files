@@ -18,7 +18,7 @@ public class RenameFiles {
     // Note: This checks for the existing directory, not a file.
     File startPathFileObject = new File(startingPath);
 
-    if (isPathADirectory(startPathFileObject)) return;
+    if (pathIsNotADirectory(startPathFileObject)) return;
     if (doesDirectoryExist(startPathFileObject)) return;
 
     File[] filesOfFileTypeArray = startPathFileObject.listFiles();
@@ -96,10 +96,11 @@ public class RenameFiles {
     return false;
   }
 
-  private static boolean isPathADirectory(File file) {
+  private static boolean pathIsNotADirectory(File file) {
     // Check File object to see if it is a directory.
     boolean isDirectory = file.isDirectory();
-    if (!isDirectory) {
+
+    if (isDirectory == false) {
       System.out.println("This is NOT directory: " + file);
       return true;
     }
@@ -136,7 +137,6 @@ public class RenameFiles {
                                      String oldText,
                                      String newText,
                                      String startingPath,
-                                     File[] filesOfFileTypeArray,
                                      int countFound
                                      ) {
 
