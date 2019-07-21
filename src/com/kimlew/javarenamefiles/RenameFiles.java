@@ -1,4 +1,4 @@
-package com.javarenamefiles;
+package com.kimlew.javarenamefiles;
 
 import java.io.File;
 import java.util.ArrayList;
