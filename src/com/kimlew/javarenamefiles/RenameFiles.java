@@ -22,7 +22,7 @@ public class RenameFiles {
     if (doesDirectoryExist(startPathFileObject)) return;
 
     File[] filesOfFileTypeArray = startPathFileObject.listFiles();
-    ArrayList<String> fileNamesArray = new ArrayList<>();
+    // ArrayList<String> fileNamesArray = new ArrayList<>();
     int countFound = 0;
 
     // Check if any filenames in String array contain oldText, i.e., find
@@ -30,7 +30,6 @@ public class RenameFiles {
     // If no: Return from program with user message, No files were renamed."
     // If yes: Call renameAllFiles().
     boolean hasOldText;
-    // ArrayList<String> filesToChange = new ArrayList<>();
     ArrayList<File> filesToChange = new ArrayList<>();
 
     for (File aFileOfFileTypeArray : filesOfFileTypeArray) {
@@ -44,7 +43,6 @@ public class RenameFiles {
     }
     if (countFound > 0) {
       getDirectoryFilesAndDisplay(filesOfFileTypeArray);
-      putFileObjectFilenamesInStringArray(filesOfFileTypeArray, fileNamesArray);
     }
     System.out.println();
 
@@ -53,19 +51,6 @@ public class RenameFiles {
 
     // For testing, use:  /Users/kimlew/temp
   } // End of main().
-
-  private static void putFileObjectFilenamesInStringArray(
-      File[] filesOfFileTypeArray,
-      ArrayList<String> fileNamesArray) {
-
-    // Get filenames from array that is of type, File object,
-    // filesOfFileTypeArray & put into String array, fileNamesArray - for
-    // easier manipulation.
-
-    for (File aFileObjectFromArray : filesOfFileTypeArray) {
-      fileNamesArray.add(aFileObjectFromArray.getName());
-    }
-  }
 
   private static void getDirectoryFilesAndDisplay(File[] filesOfFileTypeArray) {
     // Get all existing filenames in given directory & display all filenames
