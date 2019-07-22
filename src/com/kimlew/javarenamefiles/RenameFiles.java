@@ -19,7 +19,7 @@ public class RenameFiles {
     File startPathFileObject = new File(startingPath);
 
     if (isPathADirectory(startPathFileObject)) return;
-    if (doesDirectoryExist(startPathFileObject)) return;
+    if (directoryDoesNotExist(startPathFileObject)) return;
 
     File[] filesOfFileTypeArray = startPathFileObject.listFiles();
     // ArrayList<String> fileNamesArray = new ArrayList<>();
@@ -70,15 +70,18 @@ public class RenameFiles {
     System.out.println(theList);
   }
 
-  private static boolean doesDirectoryExist(File file) {
+  private static boolean directoryDoesNotExist(File file) {
     // Check File object to see if directory exists.
+    boolean directoryExists = file.exists();
 
-    boolean fileExists = file.exists();
-    if (!fileExists) {
+    if (directoryExists == true) {
+      return false;
+    }
+    else {
+      System.out.println();
       System.out.println("This directory path does NOT exist: " + file);
       return true;
     }
-    return false;
   }
 
   private static boolean isPathADirectory(File file) {
