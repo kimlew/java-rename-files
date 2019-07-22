@@ -46,8 +46,7 @@ public class RenameFiles {
     }
     System.out.println();
 
-    renameAllFiles(filesToChange, oldText, newText, startingPath,
-        filesOfFileTypeArray, countFound);
+    renameAllFiles(filesToChange, oldText, newText, startingPath, countFound);
 
     // For testing, use:  /Users/kimlew/temp
   } // End of main().
@@ -124,7 +123,6 @@ public class RenameFiles {
                                      String oldText,
                                      String newText,
                                      String startingPath,
-                                     File[] filesOfFileTypeArray,
                                      int countFound
                                      ) {
 
