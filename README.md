@@ -6,4 +6,4 @@ Script for use on local machine that renames files based on 3 user inputs:
 - the replacement string
 - the absolute path or relative path of starting directory
 
-e.g., java com.javarenamefiles.RenameFiles
+After compiling, execute at command line with: java com.kimlew.javarenamefiles.RenameFiles
