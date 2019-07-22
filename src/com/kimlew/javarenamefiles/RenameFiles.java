@@ -72,14 +72,15 @@ public class RenameFiles {
 
   private static boolean directoryDoesNotExist(File file) {
     // Check File object to see if directory exists.
-    boolean directoryDoesNotExist = file.exists();
+    boolean directoryExists = file.exists();
 
-    if (!directoryDoesNotExist) {
-      return true;
+    if (directoryExists == true) {
+      return false;
     }
     else {
+      System.out.println();
       System.out.println("This directory path does NOT exist: " + file);
-      return false;
+      return true;
     }
   }
 
